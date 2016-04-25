@@ -77,7 +77,6 @@ describe('RelayDefaultNetworkLayer', () => {
 
       variables = {
         input: {
-          [RelayConnectionInterface.CLIENT_MUTATION_ID]: 'client:a',
           actor_id: 4,
         },
       };

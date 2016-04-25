@@ -89,7 +89,6 @@ describe('RelayGraphQLMutation', () => {
     feedbackLikeQuery =
       Relay.QL`mutation FeedbackLikeMutation {
         feedbackLike(input: $input) {
-          clientMutationId
           feedback {
             doesViewerLike
             id
@@ -114,7 +113,6 @@ describe('RelayGraphQLMutation', () => {
     optimisticQuery =
       Relay.QL`mutation FeedbackLikeOptimisticUpdate {
         feedbackLike(input: $input) {
-          clientMutationId
           feedback {
             doesViewerLike
             id
@@ -366,7 +364,6 @@ describe('RelayGraphQLMutation', () => {
         const likers = generateRQLFieldAlias('likers.first(10)');
         const result = {
           response: {
-            clientMutationId: id,
             feedbackLike: {
               feedback: {
                 id: 'aFeedbackId',

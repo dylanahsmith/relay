@@ -27,7 +27,6 @@ export type PageInfo = {
   startCursor: ?string;
 };
 
-const CLIENT_MUTATION_ID = 'clientMutationId';
 const CONNECTION_CALLS = {
   'after': true,
   'before': true,
@@ -56,7 +55,6 @@ const START_CURSOR = 'startCursor';
  * Defines logic relevant to the informal "Connection" GraphQL interface.
  */
 const RelayOSSConnectionInterface = {
-  CLIENT_MUTATION_ID,
   CURSOR,
   EDGES,
   END_CURSOR,

@@ -33,17 +33,14 @@ type Mutation {
 }
 
 input ActorSubscribeInput {
-  clientMutationId: String
   actorId: String
 }
 
 type ActorSubscribeResponsePayload {
-  clientMutationId: String
   actor: User
 }
 
 type FakeResponsePayload {
-  clientMutationId: String
 }
 
 type Subscription {
@@ -61,7 +58,6 @@ type LikeStorySubscriptionPayload {
 }
 
 type ActorSubscribeSubscription {
-  clientMutationId: String
 }
 
 type Viewer {

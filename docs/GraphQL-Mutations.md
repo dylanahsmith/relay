@@ -9,9 +9,7 @@ next: graphql-further-reading
 ---
 
 Relay uses a common pattern for mutations, where they are root fields on the
-mutation type with a single argument, `input`, and where the input and output
-both contain a client mutation identifier used to reconcile requests and
-responses.
+mutation type with a single argument, `input`.
 
 By convention, mutations are named as verbs, their inputs are the name with
 "Input" appended at the end, and they return an object that is the name with
@@ -24,13 +22,11 @@ and `IntroduceShipPayload`:
 input IntroduceShipInput {
   factionId: ID!
   shipName: String!
-  clientMutationId: String!
 }
 
 type IntroduceShipPayload {
   faction: Faction
   ship: Ship
-  clientMutationId: String!
 }
 ```
 
@@ -46,7 +42,6 @@ mutation AddBWingQuery($input: IntroduceShipInput!) {
     faction {
       name
     }
-    clientMutationId
   }
 }
 ```
@@ -57,8 +52,7 @@ with these params:
 {
   "input": {
     "shipName": "B-Wing",
-    "factionId": "1",
-    "clientMutationId": "abcde"
+    "factionId": "1"
   }
 }
 ```
@@ -74,8 +68,7 @@ and we'll get this result:
     },
     "faction": {
       "name": "Alliance to Restore the Republic"
-    },
-    "clientMutationId": "abcde"
+    }
   }
 }
 ```

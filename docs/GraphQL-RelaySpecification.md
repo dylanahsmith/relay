@@ -84,13 +84,11 @@ type Query {
 input IntroduceShipInput {
   factionId: String!
   shipNamed: String!
-  clientMutationId: String!
 }
 
 type IntroduceShipPayload {
   faction: Faction
   ship: Ship
-  clientMutationId: String!
 }
 
 type Mutation {

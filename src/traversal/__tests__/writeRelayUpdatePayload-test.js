@@ -119,7 +119,6 @@ describe('writePayload()', () => {
     it('unspecified optimistic fields does not overwrite existing store data', () => {
       // create the mutation and payload
       const input = {
-        [RelayConnectionInterface.CLIENT_MUTATION_ID]: '0',
         deletedCommentId: commentID,
       };
       const mutation = getNode(Relay.QL`
@@ -141,8 +140,6 @@ describe('writePayload()', () => {
       }];
 
       const payload = {
-        [RelayConnectionInterface.CLIENT_MUTATION_ID]:
-          input[RelayConnectionInterface.CLIENT_MUTATION_ID],
         feedback: {
           id: 'feedback_id',
           topLevelComments: {},
@@ -162,6 +159,7 @@ describe('writePayload()', () => {
 
       writeRelayUpdatePayload(
         queryWriter,
+        '0',
         mutation,
         payload,
         {configs, isOptimisticUpdate: true}
@@ -255,7 +253,6 @@ describe('writePayload()', () => {
     it('optimistically removes range edges', () => {
       // create the mutation and payload
       const input = {
-        [RelayConnectionInterface.CLIENT_MUTATION_ID]: '0',
         deletedCommentId: commentID,
       };
       const mutation = getNode(Relay.QL`
@@ -279,8 +276,6 @@ describe('writePayload()', () => {
       }];
 
       const payload = {
-        [RelayConnectionInterface.CLIENT_MUTATION_ID]:
-          input[RelayConnectionInterface.CLIENT_MUTATION_ID],
         deletedCommentId: commentID,
         feedback: {
           id: 'feedback_id',
@@ -303,6 +298,7 @@ describe('writePayload()', () => {
 
       writeRelayUpdatePayload(
         queryWriter,
+        '0',
         mutation,
         payload,
         {configs, isOptimisticUpdate: true}
@@ -340,7 +336,6 @@ describe('writePayload()', () => {
     it('non-optimistically removes range edges', () => {
       // create the mutation and payload
       const input = {
-        [RelayConnectionInterface.CLIENT_MUTATION_ID]: '0',
         deletedCommentId: commentID,
       };
       const mutation = getNode(Relay.QL`
@@ -364,8 +359,6 @@ describe('writePayload()', () => {
       }];
 
       const payload = {
-        [RelayConnectionInterface.CLIENT_MUTATION_ID]:
-          input[RelayConnectionInterface.CLIENT_MUTATION_ID],
         deletedCommentId: commentID,
         feedback: {
           id: 'feedback_id',
@@ -387,6 +380,7 @@ describe('writePayload()', () => {
 
       writeRelayUpdatePayload(
         queryWriter,
+        '0',
         mutation,
         payload,
         {configs, isOptimisticUpdate: false}
@@ -452,7 +446,6 @@ describe('writePayload()', () => {
       const friendEdgeID = generateClientEdgeID(friendConnectionID, '456');
 
       const input = {
-        [RelayConnectionInterface.CLIENT_MUTATION_ID]: '0',
         friendId: '456',
       };
       const mutation = getNode(Relay.QL`
@@ -479,8 +472,6 @@ describe('writePayload()', () => {
       }];
 
       const payload = {
-        [RelayConnectionInterface.CLIENT_MUTATION_ID]:
-          input[RelayConnectionInterface.CLIENT_MUTATION_ID],
         actor: {
           id: '123',
           __typename: 'User',
@@ -500,6 +491,7 @@ describe('writePayload()', () => {
 
       writeRelayUpdatePayload(
         queryWriter,
+        '0',
         mutation,
         payload,
         {configs, isOptimisticUpdate: false}
@@ -609,7 +601,6 @@ describe('writePayload()', () => {
       // create the mutation and payload
       const input = {
         actor_id: 'actor:123',
-        [RelayConnectionInterface.CLIENT_MUTATION_ID]: '0',
         deletedCommentId: firstCommentID,
       };
       const mutation = getNode(Relay.QL`
@@ -633,8 +624,6 @@ describe('writePayload()', () => {
       }];
 
       const payload = {
-        [RelayConnectionInterface.CLIENT_MUTATION_ID]:
-          input[RelayConnectionInterface.CLIENT_MUTATION_ID],
         deletedCommentId: firstCommentID,
         feedback: {
           id: feedbackID,
@@ -657,6 +646,7 @@ describe('writePayload()', () => {
 
       writeRelayUpdatePayload(
         queryWriter,
+        '0',
         mutation,
         payload,
         {configs, isOptimisticUpdate: true}
@@ -707,7 +697,6 @@ describe('writePayload()', () => {
       // create the mutation and payload
       const input = {
         actor_id: 'actor:123',
-        [RelayConnectionInterface.CLIENT_MUTATION_ID]: '0',
         deletedCommentId: firstCommentID,
       };
       const mutation = getNode(Relay.QL`
@@ -731,8 +720,6 @@ describe('writePayload()', () => {
       }];
 
       const payload = {
-        [RelayConnectionInterface.CLIENT_MUTATION_ID]:
-          input[RelayConnectionInterface.CLIENT_MUTATION_ID],
         deletedCommentId: firstCommentID,
         feedback: {
           id: feedbackID,
@@ -754,6 +741,7 @@ describe('writePayload()', () => {
 
       writeRelayUpdatePayload(
         queryWriter,
+        '0',
         mutation,
         payload,
         {configs, isOptimisticUpdate: false}
@@ -845,7 +833,6 @@ describe('writePayload()', () => {
       // create the mutation and payload
       const input = {
         actor_id: 'actor:123',
-        [RelayConnectionInterface.CLIENT_MUTATION_ID]: '0',
         deletedRequestIds: [firstRequestID, secondRequestID],
       };
       const mutation = getNode(Relay.QL`
@@ -863,8 +850,6 @@ describe('writePayload()', () => {
       }];
 
       const payload = {
-        [RelayConnectionInterface.CLIENT_MUTATION_ID]:
-          input[RelayConnectionInterface.CLIENT_MUTATION_ID],
         deletedRequestIds: [firstRequestID, secondRequestID],
       };
 
@@ -881,6 +866,7 @@ describe('writePayload()', () => {
 
       writeRelayUpdatePayload(
         queryWriter,
+        '0',
         mutation,
         payload,
         {configs, isOptimisticUpdate: true}
@@ -911,7 +897,6 @@ describe('writePayload()', () => {
       // create the mutation and payload
       const input = {
         actor_id: 'actor:123',
-        [RelayConnectionInterface.CLIENT_MUTATION_ID]: '0',
         deletedRequestIds: [firstRequestID, secondRequestID],
       };
       const mutation = getNode(Relay.QL`
@@ -929,8 +914,6 @@ describe('writePayload()', () => {
       }];
 
       const payload = {
-        [RelayConnectionInterface.CLIENT_MUTATION_ID]:
-          input[RelayConnectionInterface.CLIENT_MUTATION_ID],
         deletedRequestIds: [firstRequestID, secondRequestID],
       };
 
@@ -946,6 +929,7 @@ describe('writePayload()', () => {
 
       writeRelayUpdatePayload(
         queryWriter,
+        '0',
         mutation,
         payload,
         {configs, isOptimisticUpdate: false}
@@ -1050,7 +1034,6 @@ describe('writePayload()', () => {
     it('handles case when created `edge` field is missing in payload', () => {
       const input = {
         actor_id: 'actor:123',
-        [RelayConnectionInterface.CLIENT_MUTATION_ID]: '0',
         feedback_id: feedbackID,
       };
       const mutation = getNode(Relay.QL`
@@ -1073,8 +1056,6 @@ describe('writePayload()', () => {
         rangeBehaviors: {'': GraphQLMutatorConstants.PREPEND},
       }];
       const payload = {
-        [RelayConnectionInterface.CLIENT_MUTATION_ID]:
-          input[RelayConnectionInterface.CLIENT_MUTATION_ID],
         feedback: {
           id: feedbackID,
           topLevelComments: {
@@ -1096,6 +1077,7 @@ describe('writePayload()', () => {
 
       writeRelayUpdatePayload(
         queryWriter,
+        '0',
         mutation,
         payload,
         {configs, isOptimisticUpdate: true}
@@ -1112,7 +1094,6 @@ describe('writePayload()', () => {
     it('warns when using null as a rangeBehavior value instead of IGNORE', () => {
       const input = {
         actor_id: 'actor:123',
-        [RelayConnectionInterface.CLIENT_MUTATION_ID]: '0',
         feedback_id: feedbackID,
         message: {
           text: 'Hello!',
@@ -1156,8 +1137,6 @@ describe('writePayload()', () => {
       const nextCursor = 'comment789:cursor';
       const nextNodeID = 'comment789';
       const payload = {
-        [RelayConnectionInterface.CLIENT_MUTATION_ID]:
-          input[RelayConnectionInterface.CLIENT_MUTATION_ID],
         feedback: {
           id: feedbackID,
           topLevelComments: {
@@ -1190,6 +1169,7 @@ describe('writePayload()', () => {
 
       writeRelayUpdatePayload(
         queryWriter,
+        '0',
         mutation,
         payload,
         {configs, isOptimisticUpdate: true}
@@ -1204,7 +1184,6 @@ describe('writePayload()', () => {
     it('ignores node when rangeBehavior value is IGNORE', () => {
       const input = {
         actor_id: 'actor:123',
-        [RelayConnectionInterface.CLIENT_MUTATION_ID]: '0',
         feedback_id: feedbackID,
         message: {
           text: 'Hello!',
@@ -1248,8 +1227,6 @@ describe('writePayload()', () => {
       const nextCursor = 'comment789:cursor';
       const nextNodeID = 'comment789';
       const payload = {
-        [RelayConnectionInterface.CLIENT_MUTATION_ID]:
-          input[RelayConnectionInterface.CLIENT_MUTATION_ID],
         feedback: {
           id: feedbackID,
           topLevelComments: {
@@ -1282,6 +1259,7 @@ describe('writePayload()', () => {
 
       writeRelayUpdatePayload(
         queryWriter,
+        '0',
         mutation,
         payload,
         {configs, isOptimisticUpdate: true}
@@ -1299,7 +1277,6 @@ describe('writePayload()', () => {
       // create the mutation and payload
       const input = {
         actor_id: 'actor:123',
-        [RelayConnectionInterface.CLIENT_MUTATION_ID]: '0',
         feedback_id: feedbackID,
         message: {
           text: 'Hello!',
@@ -1345,8 +1322,6 @@ describe('writePayload()', () => {
       const bodyID = 'client:2';
       const nextEdgeID = generateClientEdgeID(connectionID, nextNodeID);
       const payload = {
-        [RelayConnectionInterface.CLIENT_MUTATION_ID]:
-          input[RelayConnectionInterface.CLIENT_MUTATION_ID],
         feedback: {
           id: feedbackID,
           topLevelComments: {
@@ -1381,6 +1356,7 @@ describe('writePayload()', () => {
 
       writeRelayUpdatePayload(
         queryWriter,
+        '0',
         mutation,
         payload,
         {configs, isOptimisticUpdate: true}
@@ -1432,7 +1408,6 @@ describe('writePayload()', () => {
       // create the mutation and payload
       const input = {
         actor_id: 'actor:123',
-        [RelayConnectionInterface.CLIENT_MUTATION_ID]: '0',
         feedback_id: feedbackID,
         message: {
           text: 'Hello!',
@@ -1478,8 +1453,6 @@ describe('writePayload()', () => {
       const bodyID = 'client:2';
       const nextEdgeID = generateClientEdgeID(connectionID, nextNodeID);
       const payload = {
-        [RelayConnectionInterface.CLIENT_MUTATION_ID]:
-          input[RelayConnectionInterface.CLIENT_MUTATION_ID],
         feedback: {
           id: feedbackID,
           topLevelComments: {
@@ -1513,6 +1486,7 @@ describe('writePayload()', () => {
 
       writeRelayUpdatePayload(
         queryWriter,
+        '0',
         mutation,
         payload,
         {configs, isOptimisticUpdate: false}

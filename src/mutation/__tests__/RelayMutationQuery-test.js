@@ -875,7 +875,6 @@ describe('RelayMutationQuery', () => {
 
       const query = RelayMutationQuery.buildQueryForOptimisticUpdate({
         response: {
-          [RelayConnectionInterface.CLIENT_MUTATION_ID]: '1',
           feedback: {
             doesViewerLike: true,
             id: '1',
@@ -895,7 +894,6 @@ describe('RelayMutationQuery', () => {
             feedbackLike(input:$input) {
               ${Relay.QL`
                 fragment on FeedbackLikeResponsePayload {
-                  clientMutationId,
                   feedback {
                     doesViewerLike,
                     id,
@@ -976,7 +974,6 @@ describe('RelayMutationQuery', () => {
         getNodeWithoutSource(Relay.QL`
           mutation {
             commentCreate(input:$input) {
-              clientMutationId,
               ... on CommentCreateResponsePayload {
                 feedback {
                   ... on Feedback {
@@ -1056,7 +1053,6 @@ describe('RelayMutationQuery', () => {
       const expectedMutationQuery = getNodeWithoutSource(Relay.QL`
         mutation {
           commentDelete(input:$input) {
-            clientMutationId,
             deletedCommentId,
             ${Relay.QL`
               fragment on CommentDeleteResponsePayload {
@@ -1123,7 +1119,6 @@ describe('RelayMutationQuery', () => {
       const expectedMutationQuery = getNodeWithoutSource(Relay.QL`
         mutation {
           commentDelete(input:$input) {
-            clientMutationId,
             deletedCommentId,
             ${Relay.QL`
               fragment on CommentDeleteResponsePayload {
@@ -1157,7 +1152,6 @@ describe('RelayMutationQuery', () => {
           actor {
             friends
           }
-          clientMutationId
         }
       `);
       const configs = [
@@ -1185,7 +1179,6 @@ describe('RelayMutationQuery', () => {
       const expectedConcreteNode = Relay.QL`
         mutation {
           unfriend(input: $input) {
-            clientMutationId,
             formerFriend {
               id
             }
@@ -1243,7 +1236,6 @@ describe('RelayMutationQuery', () => {
       const expectedMutationQuery = getNodeWithoutSource(Relay.QL`
         mutation {
           feedbackLike(input:$input) {
-            clientMutationId,
             ${Relay.QL`
               fragment on FeedbackLikeResponsePayload {
                 feedback {
@@ -1330,7 +1322,6 @@ describe('RelayMutationQuery', () => {
         getNodeWithoutSource(Relay.QL`
           mutation {
             commentCreate(input:$input) {
-              clientMutationId,
               ... on CommentCreateResponsePayload {
                 feedback {
                   ... on Feedback {
@@ -1437,7 +1428,6 @@ describe('RelayMutationQuery', () => {
       const expectedMutationQuery = getNodeWithoutSource(Relay.QL`
         mutation {
           commentCreate(input:$input) {
-            clientMutationId,
             ${Relay.QL`
               fragment on CommentCreateResponsePayload {
                 feedback {
@@ -1493,7 +1483,7 @@ describe('RelayMutationQuery', () => {
     it('complains about unknown config types', () => {
       const fatQuery = fromGraphQL.Fragment(Relay.QL`
         fragment on UnfriendResponsePayload {
-          clientMutationId
+          __typename
         }
       `);
       const configs = [

@@ -174,7 +174,6 @@ describe('RelayStoreData', () => {
       const mutationQuery = getNode(Relay.QL`
         mutation {
           feedbackLike(input:$input) {
-            clientMutationId,
             feedback {
               id,
               doesViewerLike,
@@ -186,7 +185,6 @@ describe('RelayStoreData', () => {
         }
       `);
       const payload = {
-        [RelayConnectionInterface.CLIENT_MUTATION_ID]: 'abc',
         feedback: {
           id: '123',
           doesViewerLike: false,
@@ -195,7 +193,7 @@ describe('RelayStoreData', () => {
           },
         },
       };
-      storeData.handleUpdatePayload(mutationQuery, payload, {
+      storeData.handleUpdatePayload('abc', mutationQuery, payload, {
         configs: [],
         isOptimisticUpdate: false,
       });
@@ -220,7 +218,6 @@ describe('RelayStoreData', () => {
       const mutationQuery = getNode(Relay.QL`
         mutation {
           feedbackLike(input:$input) {
-            clientMutationId,
             feedback {
               id,
               doesViewerLike,
@@ -232,7 +229,6 @@ describe('RelayStoreData', () => {
         }
       `);
       const payload = {
-        [RelayConnectionInterface.CLIENT_MUTATION_ID]: 'abc',
         feedback: {
           id: '123',
           doesViewerLike: false,
@@ -241,10 +237,9 @@ describe('RelayStoreData', () => {
           },
         },
       };
-      storeData.handleUpdatePayload(mutationQuery, payload, {
+      storeData.handleUpdatePayload('mutationID', mutationQuery, payload, {
         configs: [],
         isOptimisticUpdate: true,
-        clientMutationID: 'mutationID',
       });
 
       // results are written to `queuedRecords`
@@ -303,7 +298,6 @@ describe('RelayStoreData', () => {
         const mutationQuery = getNode(Relay.QL`
           mutation {
             feedbackLike(input:$input) {
-              clientMutationId,
               feedback {
                 id,
                 doesViewerLike,
@@ -315,7 +309,6 @@ describe('RelayStoreData', () => {
           }
         `);
         const payload = {
-          [RelayConnectionInterface.CLIENT_MUTATION_ID]: 'abc',
           feedback: {
             id: '123',
             doesViewerLike: false,
@@ -324,10 +317,9 @@ describe('RelayStoreData', () => {
             },
           },
         };
-        storeData.handleUpdatePayload(mutationQuery, payload, {
+        storeData.handleUpdatePayload('mutationID', mutationQuery, payload, {
           configs: [],
           isOptimisticUpdate: true,
-          clientMutationID: 'mutationID',
         });
 
         // simulate a server response with different data

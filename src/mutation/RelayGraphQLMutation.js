@@ -19,7 +19,6 @@ import type {ClientMutationID} from 'RelayInternalTypes';
 const RelayMetaRoute = require('RelayMetaRoute');
 import type {FileMap} from 'RelayMutation';
 import type {RelayConcreteNode} from 'RelayQL';
-const {CLIENT_MUTATION_ID} = require('RelayConnectionInterface');
 import type RelayMutationTransaction from 'RelayMutationTransaction';
 const RelayMutationTransactionStatus = require('RelayMutationTransactionStatus');
 import type {RelayMutationTransactionCommitCallbacks} from 'RelayTypes';
@@ -102,7 +101,6 @@ class RelayGraphQLMutation {
    *    Relay.QL`
    *      mutation StoryLikeQuery {
    *        likeStory(input: $input) {
-   *          clientMutationId
    *          story {
    *            likeCount
    *            likers {
@@ -126,10 +124,6 @@ class RelayGraphQLMutation {
    * As per the GraphQL Relay Specification:
    *
    * - The mutation should take a single argument named "input".
-   * - That input argument should contain a (string) "clientMutationId" property
-   *   for the purposes of reconciling requests and responses (automatically
-   *   added by the RelayGraphQLMutation API).
-   * - The query should request "clientMutationId" as a subselection.
    *
    * @see http://facebook.github.io/relay/docs/graphql-mutations.html
    * @see http://facebook.github.io/relay/graphql/mutations.htm
@@ -315,7 +309,6 @@ class PendingGraphQLTransaction {
   getOptimisticResponse(): ?Object {
     return {
       ...this._optimisticResponse,
-      [CLIENT_MUTATION_ID]: this.id,
     };
   }
 
@@ -356,7 +349,6 @@ class PendingGraphQLTransaction {
       ...this._variables,
       input: {
         ...input,
-        [CLIENT_MUTATION_ID]: this.id,
       },
     };
   }

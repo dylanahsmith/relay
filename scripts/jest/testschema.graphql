@@ -46,47 +46,38 @@ type Mutation {
 }
 
 input ActorSubscribeInput {
-  clientMutationId: String
   subscribeeId: ID
 }
 
 input ApplicationRequestDeleteAllInput {
-  clientMutationId: String
   deletedRequestIds: [ID]
 }
 
 input CommentCreateInput {
-  clientMutationId: String
   feedbackId: ID
 }
 
 input CommentDeleteInput {
-  clientMutationId: String
   commentId: ID
 }
 
 input FeedbackLikeInput {
-  clientMutationId: String
   feedbackId: ID
 }
 
 input NodeSaveStateInput {
-  clientMutationId: String
   nodeId: ID
 }
 
 input UpdateAllSeenStateInput {
-  clientMutationId: String
   storyIds: [ID]
 }
 
 type ActorSubscribeResponsePayload {
-  clientMutationId: String
   subscribee: Actor
 }
 
 type ApplicationRequestDeleteAllResponsePayload {
-  clientMutationId: String
   deletedRequestIds: [ID]
 }
 
@@ -137,14 +128,12 @@ type Comment implements Node {
 }
 
 type CommentCreateResponsePayload {
-  clientMutationId: String
   comment: Comment
   feedback: Feedback
   feedbackCommentEdge: CommentsEdge
 }
 
 type CommentDeleteResponsePayload {
-  clientMutationId: String
   deletedCommentId: ID
   feedback: Feedback
 }
@@ -220,7 +209,6 @@ type Feedback implements Node {
 }
 
 type FeedbackLikeResponsePayload {
-  clientMutationId: String
   clientSubscriptionId: String
   feedback: Feedback
 }
@@ -560,13 +548,11 @@ type Type {
 }
 
 input UnfriendInput {
-  clientMutationId: String
   friendId: ID
 }
 
 type UnfriendResponsePayload {
   actor: Actor
-  clientMutationId: String
   formerFriend: User
 }
 
